@@ -37,6 +37,14 @@ export const metadata: Metadata = {
   }
 };
 
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      'synsk-archive-banner': React.HTMLAttributes<HTMLElement>;
+    }
+  }
+}
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
@@ -44,7 +52,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Analytics />
       </Suspense>
       <Script src="https://kit.fontawesome.com/fa9c201f80.js" crossOrigin="anonymous"></Script>
-      <body className={lato.className}>{children}</body>
+      <Script src="https://synsk.me/archive-banner.js"></Script>
+      <body className={lato.className}>
+        <synsk-archive-banner></synsk-archive-banner>
+        {children}
+      </body>
     </html>
   );
 };
